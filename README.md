@@ -21,7 +21,7 @@ The challenge presents a search bar that queries a database of books. Normal sea
 
 Testing common SQL injection payloads revealed that the application is vulnerable to **Boolean‑based blind SQL injection**. Entering `' OR '1'='1` produced a syntax error, but `') OR 1=1 --` worked.
 
-<img width="1881" height="998" alt="image (17)" src="https://github.com/user-attachments/assets/eac1a46c-0d9f-4d65-acb7-6e2f330ec0e7" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/620777d0-08ff-4918-833f-201724400874" />
 
 
 ### Finding the Breakout
