@@ -21,7 +21,7 @@ The challenge presents a search bar that queries a database of books. Normal sea
 
 Testing common SQL injection payloads revealed that the application is vulnerable to **Boolean‑based blind SQL injection**. Entering `' OR '1'='1` produced a syntax error, but `') OR 1=1 --` worked.
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/620777d0-08ff-4918-833f-201724400874" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/70bab1cc-4c34-42cd-8766-3680c551c0d5" />
 
 
 ### Finding the Breakout
@@ -56,7 +56,7 @@ https://broncoctf-forbidden-archives.chals.io/?search=') AND is_secret = 1 LIMIT
 
 This made the application display the secret book's details, which contained the flag.
 
-<img width="1868" height="1000" alt="image (16)" src="https://github.com/user-attachments/assets/ba1c0f9d-35d5-4829-9af8-52af7ba7c443" />
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/79708ac6-c0d7-4a22-9326-fc308e7ab386" />
 
 
 ### Alternative – Blind Extraction (For Completeness)
