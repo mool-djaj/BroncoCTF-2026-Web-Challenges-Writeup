@@ -72,6 +72,8 @@ We used this method to discover the title `All_of_the_World_s_Knowledge` before 
 ## Script used (Forbidden Archives)
 
 ```python
+
+
 import requests
 import string
 import time
@@ -149,6 +151,7 @@ for pos in range(START_POS, 101):  # max 100 chars
 
     # Small delay to avoid rate‑limiting
     time.sleep(0.2)
+
 ```
 
 ### Flag
