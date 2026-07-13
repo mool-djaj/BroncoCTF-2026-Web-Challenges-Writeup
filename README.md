@@ -17,11 +17,12 @@ This writeup covers three web challenges from BroncoCTF, each with a difficulty 
 
 The challenge presents a search bar that queries a database of books. Normal searches return public books; searching for the forbidden book yields no results.
 
-![image](image\ \(12\).webp)
+<img width="1881" height="998" alt="image (12)" src="https://github.com/user-attachments/assets/9a391eb2-2f67-44ec-b383-4ae95099e44a" />
 
 Testing common SQL injection payloads revealed that the application is vulnerable to **Boolean‑based blind SQL injection**. Entering `' OR '1'='1` produced a syntax error, but `') OR 1=1 --` worked.
 
-![image](image\ \(17\).webp)
+<img width="1881" height="998" alt="image (17)" src="https://github.com/user-attachments/assets/eac1a46c-0d9f-4d65-acb7-6e2f330ec0e7" />
+
 
 ### Finding the Breakout
 
