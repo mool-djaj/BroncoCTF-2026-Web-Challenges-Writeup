@@ -76,7 +76,7 @@ We used this method to discover the title `All_of_the_World_s_Knowledge` before 
 ```
 bronco{...}
 ```
-*(Replace with your retrieved flag)*
+bronco{y0u_d3f3@t3d_th3_h1gh_c0unc1l}
 
 ---
 
