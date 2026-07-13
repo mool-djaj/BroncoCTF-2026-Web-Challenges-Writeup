@@ -56,7 +56,8 @@ https://broncoctf-forbidden-archives.chals.io/?search=') AND is_secret = 1 LIMIT
 
 This made the application display the secret book's details, which contained the flag.
 
-![image](image\ \(16\).webp)
+<img width="1868" height="1000" alt="image (16)" src="https://github.com/user-attachments/assets/ba1c0f9d-35d5-4829-9af8-52af7ba7c443" />
+
 
 ### Alternative – Blind Extraction (For Completeness)
 
@@ -68,7 +69,7 @@ If direct display hadn't worked, we could have extracted the flag character by c
 
 We used this method to discover the title `All_of_the_World_s_Knowledge` before finding the easier path.
 
-![image](image\ \(13\).webp)
+<img width="1868" height="1000" alt="image (13)" src="https://github.com/user-attachments/assets/46365828-3f7f-4759-a849-c11c56fbdbb4" />
 
 ### Flag
 
@@ -92,11 +93,13 @@ bronco{...}
 
 The login page is a simple HTML form that sends a POST request to `/login` with JSON credentials.
 
-![image](image\ \(7\).webp)
+<img width="1858" height="998" alt="image (7)" src="https://github.com/user-attachments/assets/dd40f48f-8680-4460-a160-7f651b988c8d" />
+
 
 Viewing the page source or using the browser's Network tab revealed a request to `/api/config` that returned the credentials.
 
-![image](image\ \(8\).webp)
+<img width="1880" height="991" alt="image (8)" src="https://github.com/user-attachments/assets/1e82925c-29e7-4c62-95ad-a3ddb3401eab" />
+
 
 ### Exploitation
 
@@ -109,7 +112,8 @@ Directly accessing `/api/config` returned a JSON object:
 }
 ```
 
-![image](image\ \(9\).webp)
+<img width="1452" height="814" alt="image (9)" src="https://github.com/user-attachments/assets/d10b28ff-c5fa-4ba6-a5ac-7e3e7f91fa23" />
+
 
 We then used these credentials to log in.
 
@@ -123,7 +127,8 @@ curl -X POST https://broncoctf-super-secure-server.chals.io/login \
 
 The server redirected to `/home`, where the flag was displayed.
 
-![image](image\ \(10\).webp)
+<img width="1880" height="991" alt="image (10)" src="https://github.com/user-attachments/assets/aa581649-df12-4b64-82ab-8755f69fc4cc" />
+
 
 ### Flag
 
@@ -146,7 +151,8 @@ bronco{d0nt_3xp0se_p@ssw0rd5!}
 
 The login page is a simple form that sends JSON to `/login`.
 
-![image](image\ \(4\).webp)
+<img width="1858" height="998" alt="image (4)" src="https://github.com/user-attachments/assets/78875f3c-67ec-4449-a20e-29f3c711e2d5" />
+
 
 #### Step 1: Check `robots.txt`
 
@@ -159,7 +165,8 @@ Disallow: /security
 # amVmZixzYXJhaCx hZG1pbixndWVzdA==
 ```
 
-![image](image\ \(3\).webp)
+<img width="911" height="532" alt="image (3)" src="https://github.com/user-attachments/assets/e9530c02-5f8b-494a-851d-5b94af3c484d" />
+
 
 The `Disallow` hint pointed to an interesting path, and the Base64 string decoded to:
 
@@ -167,7 +174,8 @@ The `Disallow` hint pointed to an interesting path, and the Base64 string decode
 jeff,sarah, admin,guest
 ```
 
-![image](image\ \(2\).webp)
+<img width="1908" height="987" alt="image (2)" src="https://github.com/user-attachments/assets/71a9a1f0-b12e-4b7b-a204-26e2f37a5ef8" />
+
 
 This gave us a list of valid usernames: `jeff`, `sarah`, `admin`, `guest`.
 
@@ -182,7 +190,7 @@ The page contained:
 > - Planned upgrade: hashing + salting  
 > **TODO:** remove this page before production deployment!
 
-![image](image\ \(1\).webp)
+<img width="911" height="532" alt="image (1)" src="https://github.com/user-attachments/assets/0012d789-00fc-4b0d-a934-acecdd7e87c5" />
 
 This told us exactly how passwords are generated – **the reverse of the username**.
 
