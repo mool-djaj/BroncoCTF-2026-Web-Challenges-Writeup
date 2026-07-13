@@ -69,7 +69,10 @@ If direct display hadn't worked, we could have extracted the flag character by c
 
 We used this method to discover the title `All_of_the_World_s_Knowledge` before finding the easier path.
 
-[Uploimport requests
+## Script used (Forbidden Archives)
+
+```python
+import requests
 import string
 import time
 
@@ -145,8 +148,8 @@ for pos in range(START_POS, 101):  # max 100 chars
             break
 
     # Small delay to avoid rate‑limiting
-    time.sleep(0.2)ading message.txt…]()
-
+    time.sleep(0.2)
+```
 
 ### Flag
 
