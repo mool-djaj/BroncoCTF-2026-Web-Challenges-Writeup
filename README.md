@@ -1,4 +1,4 @@
-[message.txt](https://github.com/user-attachments/files/29968900/message.txt)# BroncoCTF 2026 Web Challenges Writeup
+BroncoCTF 2026 Web Challenges Writeup
 
 This writeup covers three web challenges from BroncoCTF, each with a difficulty of 10 points. The solutions demonstrate common web vulnerabilities: **SQL injection**, **exposed API endpoints**, and **information leakage**.
 
